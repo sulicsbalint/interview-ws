@@ -58,7 +58,7 @@ export class ArticlesListComponent implements OnInit {
 					this.filteredArticles = response.articles;
 				},
 				error: (error: HttpErrorResponse) => {
-					this._snackBar.open(error.error.message, 'OK', { duration: 30000 });
+					this._snackBar.open(error.error.message, 'OK', { duration: 3000 });
 					this.waitingForResponse = false;
 				},
 				complete: () => {
