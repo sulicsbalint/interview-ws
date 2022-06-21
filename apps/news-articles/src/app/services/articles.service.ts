@@ -18,7 +18,6 @@ export class ArticlesService {
 	) { }
 
 	getArticles(options?: ArticlesRequestParamaters): Observable<ArticlesResponse> {
-		console.log(options);
 		let queryParams = new HttpParams();
 		queryParams = queryParams.append('apiKey', this._apiKey);
 		queryParams = options?.q ? queryParams.append('q', options.q) : queryParams;
