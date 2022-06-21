@@ -1,0 +1,77 @@
+<div class="search-form-container">
+	<h1>Search for articles</h1>
+
+	<form [formGroup]="articlesSearchForm" (ngSubmit)="searchForArticles()">
+		<mat-form-field appearance="outline">
+			<mat-label>Keyword</mat-label>
+			<input matInput formControlName="q">
+		</mat-form-field>
+	
+		<mat-form-field appearance="outline">
+			<mat-label>From</mat-label>
+			<input matInput formControlName="from" [matDatepicker]="fromDatePicker">
+			<mat-datepicker-toggle matSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
+			<mat-datepicker #fromDatePicker></mat-datepicker>
+		</mat-form-field>
+	
+		<mat-form-field appearance="outline">
+			<mat-label>To</mat-label>
+			<input matInput formControlName="to" [matDatepicker]="toDatePicker">
+			<mat-datepicker-toggle matSuffix [for]="toDatePicker"></mat-datepicker-toggle>
+			<mat-datepicker #toDatePicker></mat-datepicker>
+		</mat-form-field>
+	
+		<div mat-dialog-actions>
+			<button mat-raised-button
+					color="primary"
+					type="submit"
+					[disabled]="waitingForResponse">Search</button>
+		</div>
+	</form>
+</div>
+
+<div class="author-filter-container" *ngIf="anyArticles">
+	<h1>Filter by author</h1>
+
+	<form [formGroup]="authorFilterForm" (ngSubmit)="filterByAuthor()">
+		<mat-form-field appearance="outline">
+			<mat-label>Filter author</mat-label>
+			<input matInput formControlName="value">
+		</mat-form-field>
+	
+		<div mat-dialog-actions>
+			<button mat-raised-button
+					color="primary"
+					type="submit">Filter</button>
+		</div>
+	</form>
+</div>
+
+<div class="articles-container" *ngIf="anyArticles">
+
+	<h1>Articles found:</h1>
+
+	<div class="articles-container__article" *ngFor="let article of filteredArticles">
+		<div class="articles-container__title">
+			<a [href]="article.url" target="_blank">{{ article.title }}</a>
+		</div>
+
+		<div class="articles-container__image">
+			<img [src]="article.urlToImage" loading="lazy">
+		</div>
+
+		<div class="articles-container__author-publishedAt">
+			<div class="articles-container__author">
+				Author: {{ article.author }}
+			</div>
+
+			<div class="articles-container__publishedAt">
+				Published: {{ getPublishedDate(article.publishedAt) }}
+			</div>
+		</div>
+
+		<div class="articles-container__description">
+			{{ article.description }}
+		</div>
+	</div>
+</div>
