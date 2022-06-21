@@ -8,8 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Article } from '../../types/news-articles-types';
 
+import { Article } from '../../types/news-articles-types';
 import { ArticlesListComponent } from './articles-list.component';
 
 describe('ArticlesListComponent', () => {
